@@ -1,5 +1,11 @@
 {
-    
+    "name": "ScanQ",
+    "iconURL": "https://marrommel.github.io/scanq-altstore/app_icon.png",
+    "website": "https://marrommel.github.io/scanq-altstore",
+    "tintColor": "#309D8E",
+    "featuredApps": [
+    "com.rommelbendel.flutterScanq"
+    ],
     "apps": [
         {
             "name": "ScanQ",
@@ -7,7 +13,7 @@
             "developerName": "RommelBendel",
             "subtitle": "ScanQ - Dein Vokabeltrainer für effizientes & einfaches Lernen",
             "localizedDescription": "ScanQ ist eine moderne & simple Ergänzung zum herkömmlichen Vokabellernen. Alle Vokabeln können ohne großen Aufwand oder lästiges Eintippen eingescannt werden und sind anschließend zum Lernen verfügbar.\n\nDafür stehen dir mit ScanQ fünf unterschiedliche Quiz bereit, die selbst deine nächste Vorbereitung auf Tests und Klausuren zum Vergnügen machen.\n\nAußerdem bündelt ScanQ alle deine Vokabeln in Kategorien und sortiert sie anschließend in alphabetischen Tabellen. Dort kannst du Vokabeln einfach bearbeiten, löschen oder markieren.\n",
-            "iconURL": "https://marcelrommel.de/altstore/app_icon.png",
+            "iconURL": "https://marrommel.github.io/scanq-altstore/app_icon.png",
             "tintColor": "#309D8E",
             "versions": [
                 {
