@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScanQ mit AltStore installieren</title>
+    <style>
+      @media (max-width: 768px) {
+        .copy-btn {
+          display: none;
+        }
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f5f7fa;
+        color: #333;
+        padding: 2rem;
+        max-width: 800px;
+        margin: auto;
+      }
+      h1 {
+        color: #309d8e;
+      }
+      h2 {
+        margin-top: 2rem;
+      }
+      code {
+        background: #e9ecef;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      .source-box {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 1rem;
+        margin: 1rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .source-box input {
+        border: none;
+        width: 100%;
+        font-size: 1rem;
+        background: transparent;
+        color: #000;
+      }
+
+      .source-box input:focus {
+        border: none;
+        outline: none;
+      }
+
+      .button {
+        background-color: #309d8e;
+        border: none;
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        white-space: nowrap;
+        margin-left: 1rem;
+      }
+
+      .button:hover {
+        background-color: #26756b;
+      }
+      a {
+        color: #309d8e;
+      }
+
+      .copy-btn:disabled {
+        background-color: #8a8a8a;
+        cursor: not-allowed;
+      }
+
+      .copy-btn:disabled:hover {
+        background-color: #8a8a8a;
+        transform: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ScanQ auf deinem iPhone installieren</h1>
+    <p>
+      Zurzeit ist <strong>ScanQ</strong> nicht im offiziellen AppStore von Apple
+      verfügbar. Hier findest du daher eine einfache Anleitung, wie du
+      <strong>ScanQ</strong> mit <strong>AltStore</strong> auf deinem iPhone
+      installierst.
+    </p>
+
+    <h2>🖥️ Schritt 1: AltStore Server auf deinem PC herunterladen</h2>
+    <div style="margin-bottom: 1rem">
+      <button class="button" onclick="selectOS('windows')">💻 Windows</button>
+      <button class="button" onclick="selectOS('mac')">🍎 macOS</button>
+    </div>
+
+    <div id="os-instructions" style="display: none; margin-bottom: 2rem">
+      <p id="os-text"></p>
+      <a
+        id="os-link"
+        class="button"
+        target="_blank"
+        style="display: inline-block; margin-top: 0.5rem"
+        >Zur Anleitung</a
+      >
+    </div>
+
+    <h2>📲 2. AltStore auf dem iPhone installieren</h2>
+    <ol>
+      <li>Verbinde dein iPhone per Kabel mit dem Computer.</li>
+      <li>Starte AltServer auf deinem Computer.</li>
+      <li>Installiere AltStore auf deinem iPhone über AltServer.</li>
+    </ol>
+
+    <h2>🌐 3. Link zur ScanQ-App hinzufügen</h2>
+    <ol>
+      <li>Öffne die <strong>AltStore-App</strong> auf deinem iPhone.
+      <br><b>Wichtig:</b> Beide Geräte (Computer & iPhone) müssen im gleichen WLAN-Netzwerk sein!</li>
+      <li>Wechsle zum Reiter <strong>„Browse“</strong>.</li>
+      <li>
+        Tippe auf das <strong>+</strong> oben links und wähle
+        <strong>„Quelle hinzufügen“</strong>.
+      </li>
+      <li>Füge folgenden Link ein und bestätige:</li>
+    </ol>
+
+    <div class="source-box" style="margin: 1rem 0">
+      <input
+        id="sourceUrl"
+        type="text"
+        readonly
+        onclick="copySource()"
+        value="https://scanq.is-great.net/altstore/source.json"/>
+      
+      <button class="button copy-btn" onclick="copySource()">Kopieren</button>
+    </div>
+
+    <p>
+      🧠 Danach erscheint ScanQ automatisch als App in AltStore. Du kannst sie
+      jetzt installieren!
+    </p>
+
+    <h2>⬇️ 4. App installieren</h2>
+    <ol>
+      <li>Tippe auf ScanQ in AltStore.</li>
+      <li>Wähle „Mit AltStore installieren“.</li>
+      <li>Die App wird nun auf deinem iPhone installiert.</li>
+      <li>
+        Gehe zu Einstellungen → Allgemein → VPN & Geräteverwaltung und vertraue
+        dem Entwicklerprofil.
+      </li>
+    </ol>
+
+    <br /><br />
+
+    <h3>Hinweis</h3>
+    <p>
+      Mit einer kostenlosen Apple-ID muss die App
+      <b>alle 7 Tage neu signiert</b> werden. AltStore erledigt das
+      <b>automatisch</b>, wenn dein <b>iPhone & Computer</b> beide eingeschaltet
+      und im gleichen WLAN sind.
+    </p>
+
+    <script>
+      function copySource() {
+        const input = document.getElementById("sourceUrl");
+
+        // Anfrage auf Berechtigung zum Schreiben in die Zwischenablage
+        navigator.permissions
+          .query({ name: "clipboard-write" })
+          .then(({ state }) => {
+            console.log(`Berechtigungsstatus: ${state}`);
+
+            if (state === "granted") {
+              // Erstellen des Textes für die Zwischenablage
+              const data = [
+                new ClipboardItem({
+                  "text/plain": new Blob([input.value], { type: "text/plain" }),
+                }),
+              ];
+
+              // Versuch, den Text in die Zwischenablage zu schreiben
+              navigator.clipboard
+                .write(data)
+                .then(() => {
+                  const button = document.querySelector(".copy-btn");
+                  const originalText = button.textContent;
+                  button.textContent = "✔ Kopiert!";
+                  button.disabled = true;
+                  setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                  }, 2000);
+                  console.log("Kopieren in die Zwischenablage erfolgreich.");
+                })
+                .catch((err) => {
+                  console.error("Fehler beim Kopieren: " + err);
+                  alert(
+                    "Fehler: Dein Browser unterstützt das automatische Kopieren leider nicht."
+                  );
+                });
+            } else {
+              alert(
+                "Die Berechtigung zum Kopieren in die Zwischenablage wurde verweigert oder ist nicht verfügbar."
+              );
+            }
+          })
+          .catch((err) => {
+            console.error("Fehler beim Überprüfen der Berechtigungen: " + err);
+            alert(
+              "Fehler: Dein Browser unterstützt das automatische Kopieren leider nicht."
+            );
+          });
+      }
+
+      function selectOS(os) {
+        const osInstructions = document.getElementById("os-instructions");
+        const osText = document.getElementById("os-text");
+        const osLink = document.getElementById("os-link");
+
+        if (os === "windows") {
+          osText.textContent =
+            "Installationsanleitung für AltStore auf Windows:";
+          osLink.href =
+            "https://faq.altstore.io/altstore-classic/how-to-install-altstore-windows#installing-altstore";
+        } else if (os === "mac") {
+          osText.textContent = "Installationsanleitung für AltStore auf macOS:";
+          osLink.href =
+            "https://faq.altstore.io/altstore-classic/how-to-install-altstore-macos#installing-altstore";
+        }
+
+        osInstructions.style.display = "block";
+      }
+    </script>
+  </body>
+</html>
