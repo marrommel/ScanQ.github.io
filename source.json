@@ -1,11 +1,5 @@
 {
-    "name": "ScanQ",
-    "iconURL": "https://marcelrommel.de/altstore/app_icon.png",
-    "website": "https://scanq.is-great.net/",
-    "tintColor": "#309D8E",
-    "featuredApps": [
-        "com.rommelbendel.flutterScanq"
-    ],
+    
     "apps": [
         {
             "name": "ScanQ",
