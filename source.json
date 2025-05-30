@@ -1,0 +1,43 @@
+{
+    "name": "ScanQ",
+    "iconURL": "https://marcelrommel.de/altstore/app_icon.png",
+    "website": "https://scanq.is-great.net/",
+    "tintColor": "#309D8E",
+    "featuredApps": [
+        "com.rommelbendel.flutterScanq"
+    ],
+    "apps": [
+        {
+            "name": "ScanQ",
+            "bundleIdentifier": "com.rommelbendel.flutterScanq",
+            "developerName": "RommelBendel",
+            "subtitle": "ScanQ - Dein Vokabeltrainer für effizientes & einfaches Lernen",
+            "localizedDescription": "ScanQ ist eine moderne & simple Ergänzung zum herkömmlichen Vokabellernen. Alle Vokabeln können ohne großen Aufwand oder lästiges Eintippen eingescannt werden und sind anschließend zum Lernen verfügbar.\n\nDafür stehen dir mit ScanQ fünf unterschiedliche Quiz bereit, die selbst deine nächste Vorbereitung auf Tests und Klausuren zum Vergnügen machen.\n\nAußerdem bündelt ScanQ alle deine Vokabeln in Kategorien und sortiert sie anschließend in alphabetischen Tabellen. Dort kannst du Vokabeln einfach bearbeiten, löschen oder markieren.\n",
+            "iconURL": "https://marcelrommel.de/altstore/app_icon.png",
+            "tintColor": "#309D8E",
+            "versions": [
+                {
+                    "version": "1.0.0",
+                    "buildVersion": "1",
+                    "date": "2025-04-22",
+                    "downloadURL": "https://github.com/marrommel/ScanQ/releases/download/v1.3/ScanQ.ipa",
+                    "size": 57797590,
+                    "minOSVersion": "12.0"
+                }
+            ],
+            "appPermissions": {
+                "entitlements": [
+                    "get-task-allow"
+                ],
+                "privacy": {
+                    "NSCameraUsageDescription": "The app uses the camera to scan vocabulary.",
+                    "NSMicrophoneUsageDescription": "The app uses the microphone for voice quiz.",
+                    "NSLocalNetworkUsageDescription": "The app may scan the local network for nearby devices.",
+                    "NSPhotoLibraryUsageDescription": "The app requires access to the photo library to save images.",
+                    "NSAppleMusicUsageDescription": "The app uses Apple Music for listening quiz.",
+                    "NSFileProviderDomainUsageDescription": "The app requires access to file storage to store vocabulary."
+                }
+            }
+        }
+    ]
+}
